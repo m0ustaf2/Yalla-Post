@@ -23,16 +23,24 @@ export const registerSchema = z
       ),
     rePassword: z.string().nonempty("please confirm your password"),
     gender: z.enum(["male", "female"], { message: "gender is required" }),
-    dateOfBirth: z.string().nonempty("date of birth is required")
-    .refine(
-      (data) => {
-        const selectedDate = new Date(data).getFullYear();
-        const today = new Date().getFullYear();
-        const age = today - selectedDate;
-        return age >= 15;
-      },
-      { message: "age must be at least 15 years old" }
-    ),
+    dateOfBirth: z
+      .union([z.string(), z.date()]) // Accept both string and Date
+      .refine((data) => data !== "" && data !== null, {
+        message: "date of birth is required",
+      })
+      .transform((data) => {
+        // Convert to Date if string
+        return typeof data === "string" ? new Date(data) : data;
+      })
+      .refine(
+        (date) => {
+          const selectedYear = date.getFullYear();
+          const currentYear = new Date().getFullYear();
+          const age = currentYear - selectedYear;
+          return age >= 15;
+        },
+        { message: "age must be at least 15 years old" }
+      ),
   })
   .refine((data) => data.password === data.rePassword, {
     message: "passwords do not match",

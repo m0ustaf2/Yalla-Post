@@ -36,7 +36,9 @@ export default function Register() {
     resolver: zodResolver(registerSchema),
     mode: "onChange",
   });
-const password= watch("password")
+  
+  const password = watch("password");
+
   async function onRegister(data) {
     console.log(data);
     try {
@@ -59,11 +61,10 @@ const password= watch("password")
 
   return (
     <>
-      <section className="h-screen  bg-linear-to-br from-purple-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-        <div className="container  px-4 py-6">
+      <section className="min-h-screen bg-linear-to-br from-purple-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="container px-4 py-6 min-h-screen">
           <div className="max-w-2xl mx-auto h-full flex flex-col">
             {/* Header - Compact */}
-
             <div className="text-center mb-8 animate-fade-in">
               <div className="inline-block p-3 bg-purple-100 dark:bg-purple-900 rounded-full mb-4">
                 <svg
@@ -87,6 +88,7 @@ const password= watch("password")
                 Join us today and start your journey
               </p>
             </div>
+            
             {/* Form Card - Flexible height */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 border border-gray-100 dark:border-gray-700 flex-1 overflow-hidden flex flex-col">
               {apiError && (
@@ -181,7 +183,6 @@ const password= watch("password")
                   </div>
 
                   {/* Confirm Password Field */}
-                 
                   <div className="relative">
                     <Label
                       htmlFor="rePassword"
@@ -224,7 +225,7 @@ const password= watch("password")
                     )}
                   </div>
 
-                  {/* Date of Birth Field */}
+                  {/* Date of Birth Field - FIXED */}
                   <div className="relative">
                     <Label className="text-gray-700 dark:text-gray-300 font-semibold text-sm">
                       Date of Birth
@@ -235,19 +236,17 @@ const password= watch("password")
                           <Datepicker
                             {...field}
                             maxDate={new Date()}
-                            value={
-                              field.value ? new Date(field.value) : new Date()
-                            }
-                            onChange={(date) => {
-                              if (date) {
-                                const formatedDate = new Date(date)
+                            value={field.value ? new Date(field.value) : new Date()}
+                            onSelectedDateChanged={(date) => {
+                              if (date && !isNaN(date.getTime())) {
+                                const formattedDate = new Date(date)
                                   .toLocaleDateString("en-US", {
                                     day: "2-digit",
                                     month: "2-digit",
                                     year: "numeric",
                                   })
                                   .replaceAll("/", "-");
-                                return field.onChange(formatedDate);
+                                field.onChange(formattedDate);
                               }
                             }}
                           />
@@ -262,7 +261,6 @@ const password= watch("password")
                   </div>
 
                   {/* Gender Field */}
-
                   <div className="relative">
                     <Label className="text-gray-700 dark:text-gray-300 font-semibold text-sm">
                       Gender
@@ -312,7 +310,7 @@ const password= watch("password")
                     type="submit"
                     disabled={!isValid || isSubmitting}
                     isLoading={isSubmitting}
-                    className="w-full transform transition-all duration-200 "
+                    className="w-full transform transition-all duration-200"
                   >
                     Create Account
                   </AppButton>
