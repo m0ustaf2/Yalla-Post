@@ -247,7 +247,7 @@ export default function CommentPostHeader({
           </div>
         </div>
 
-        {_id == userData._id && (
+        {_id == userData?._id && (
           <Dropdown
             inline
             arrowIcon={false}

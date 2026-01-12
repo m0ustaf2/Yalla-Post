@@ -34,7 +34,7 @@ export default function ProfileCard() {
                     👋 Welcome back
                   </span>
                   <span className="block text-2xl font-bold bg-linear-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                    {userData.name}
+                    {userData?.name}
                   </span>
                 </h5>
                 {/* Info */}

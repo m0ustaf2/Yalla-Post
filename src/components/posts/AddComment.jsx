@@ -85,8 +85,8 @@ export default function AddComment({ post }) {
             {/* User Avatar */}
             <Avatar
               img={
-                userData?.photo && !userData.photo.includes("undefined")
-                  ? userData.photo
+                userData?.photo && !userData?.photo.includes("undefined")
+                  ? userData?.photo
                   : `${import.meta.env.VITE_BASE_URL}/uploads/default-profile.png`
               }
               alt={userData?.name || "User"}

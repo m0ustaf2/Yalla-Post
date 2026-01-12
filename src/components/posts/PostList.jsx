@@ -57,8 +57,8 @@ export default function PostList({ fromHome = true }) {
               </Alert>
             )}
             {data && data?.posts?.length > 0 ? (
-              data.posts.map((post) => (
-                <PostItem key={post._id} post={post} />
+              data?.posts.map((post) => (
+                <PostItem key={post?._id} post={post} />
               ))
             ) : (
               !isLoading && (

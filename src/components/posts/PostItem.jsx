@@ -140,7 +140,7 @@ export default function PostItem({ post, showAllComments = false }) {
                 <>
                   {comments.map((comment, index) => (
                     <Motion.div
-                      key={comment._id}
+                      key={comment?._id}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
@@ -148,11 +148,11 @@ export default function PostItem({ post, showAllComments = false }) {
                       <CommentPostHeader
                         user={{
                           ...comment.commentCreator,
-                          createdAt: comment.createdAt,
-                          body: comment.content,
+                          createdAt: comment?.createdAt,
+                          body: comment?.content,
                         }}
                         isComment={true}
-                        mediaId={comment._id}
+                        mediaId={comment?._id}
                         postId={_id}
                       />
                     </Motion.div>

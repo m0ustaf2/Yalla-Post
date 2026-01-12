@@ -24,7 +24,7 @@ const {data, isLoading, isError, error} =  useFetch(["post-Details" , id] , `pos
                 <span className="font-medium">Info alert!</span> {error}
               </Alert>
             )}
-            { data && <PostItem post={data.post} showAllComments={true} />}
+            { data && <PostItem post={data?.post} showAllComments={true} />}
           </div>
         </div>
       </section>

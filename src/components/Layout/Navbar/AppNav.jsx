@@ -109,8 +109,8 @@ export default function AppNav() {
                     className="relative ring-2 ring-white dark:ring-gray-800"
                     alt="User"
                     img={
-                      userData?.photo && !userData.photo.includes("undefined")
-                        ? userData.photo
+                      userData?.photo && !userData?.photo.includes("undefined")
+                        ? userData?.photo
                         : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                     }
                     rounded
@@ -129,8 +129,8 @@ export default function AppNav() {
                       <div className="flex items-center gap-3 mb-2">
                         <Avatar
                           img={
-                            userData?.photo && !userData.photo.includes("undefined")
-                              ? userData.photo
+                            userData?.photo && !userData?.photo.includes("undefined")
+                              ? userData?.photo
                               : "https://flowbite.com/docs/images/people/profile-picture-5.jpg"
                           }
                           rounded
