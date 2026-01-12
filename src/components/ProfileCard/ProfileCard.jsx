@@ -2,7 +2,7 @@ import { Avatar, Card } from "flowbite-react";
 import { useContext } from "react";
 import { HiCake, HiMail, HiUser } from "react-icons/hi";
 import Skeleton from "react-loading-skeleton";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext.js";
 import ChangePasswordModal from "../shared/ChangePasswordModal/ChangePasswordModal";
 import ModalShared from "../shared/ModalShared/ModalShared";
 import { formateDate } from './../../lib/formateDate';

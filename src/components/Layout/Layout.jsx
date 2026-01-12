@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import AppNav from "./Navbar/AppNav";
 import AppFooter from "./Footer/AppFooter";
 import { useContext } from "react";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext.js";
 
 export default function Layout() {
   const { userData } = useContext(AuthContext);

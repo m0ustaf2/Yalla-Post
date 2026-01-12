@@ -2,7 +2,7 @@ import { Alert, Pagination } from "flowbite-react";
 import { useContext, useState } from "react";
 import { HiInformationCircle } from "react-icons/hi";
 import Skeleton from "react-loading-skeleton";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext.js";
 import { useFetch } from "../../hooks/useFetch";
 import PostItem from "./PostItem";
 import Add from "./Add";

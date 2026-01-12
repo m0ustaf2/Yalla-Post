@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { CiEdit } from "react-icons/ci";
 import AppButton from "../AppButton/AppButton";
 import { toast } from "react-toastify";
-import { AuthContext } from "../../../context/authContext";
+import { AuthContext } from "../../../context/AuthContext.js";
 import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { uploadImageSchema } from "../../../validationSchema/uploadImageSchema";

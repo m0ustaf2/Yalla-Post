@@ -7,7 +7,7 @@ import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import { postCommentSchema } from "../../validationSchema/postCommentSchema";
 import ValidationError from "../shared/ValidationError/ValidationError";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext.js";
 import { Avatar } from "flowbite-react";
 import { 
   FiSend, 

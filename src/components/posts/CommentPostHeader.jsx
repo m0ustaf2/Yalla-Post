@@ -13,7 +13,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useContext, useRef, useState } from "react";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext.js";
 import AppButton from "../shared/AppButton/AppButton";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";

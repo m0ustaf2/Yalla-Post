@@ -8,7 +8,7 @@ import { HiEye, HiEyeOff, HiInformationCircle } from "react-icons/hi";
 import AppButton from "../../../components/shared/AppButton/AppButton";
 import { Alert, Label, TextInput } from "flowbite-react";
 import ValidationError from "../../../components/shared/ValidationError/ValidationError";
-import { AuthContext} from "../../../context/authContext";
+import { AuthContext} from "../../../context/AuthContext.js";
 
 const defaultValues = {
   name: "",

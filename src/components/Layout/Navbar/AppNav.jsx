@@ -8,7 +8,7 @@ import {
 import { motion as Motion } from "framer-motion";
 import { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../../context/authContext";
+import { AuthContext } from "../../../context/AuthContext.js";
 import {
   HiHome,
   HiNewspaper,

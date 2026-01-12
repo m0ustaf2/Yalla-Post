@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import PostItem from "../../components/posts/PostItem";
 import { useFetch } from "../../hooks/useFetch";
 import { useContext } from "react";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../../context/AuthContext.js";
 import Skeleton from "react-loading-skeleton";
 
 export default function PostDetails() {
