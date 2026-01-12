@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginSchema } from "./../../../validationSchema/loginSchema";
 import axios from "axios";
 import { HiEye, HiEyeOff, HiInformationCircle } from "react-icons/hi";
@@ -148,12 +148,12 @@ const [showPassword, setShowPassword] = useState(false);
                   {/* Login Link */}
                   <p className="text-center text-gray-600 dark:text-gray-400 mt-4">
                     Don't have an account?
-                    <a
-                      href="/register"
+                    <Link
+                      to="/register"
                       className="text-purple-600 ms-1 dark:text-purple-400 font-semibold hover:underline"
                     >
                       Sign up
-                    </a>
+                    </Link>
                   </p>
                 </form>
               </div>

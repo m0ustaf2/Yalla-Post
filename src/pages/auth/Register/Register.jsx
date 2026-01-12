@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { Alert, Datepicker, Label, Radio, TextInput } from "flowbite-react";
 import { Controller, useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { registerSchema } from "../../../validationSchema/registerSchema";
 import ValidationError from "../../../components/shared/ValidationError/ValidationError";
 import AppButton from "../../../components/shared/AppButton/AppButton";
@@ -320,12 +320,12 @@ const password= watch("password")
                   {/* Login Link */}
                   <p className="text-center text-sm text-gray-600 dark:text-gray-400">
                     Already have an account?{" "}
-                    <a
-                      href="/login"
+                    <Link
+                      to="/login"
                       className="text-purple-600 dark:text-purple-400 font-semibold hover:underline"
                     >
                       Sign in
-                    </a>
+                    </Link>
                   </p>
                 </div>
               </form>
