@@ -6,11 +6,30 @@ import { useState } from "react";
 import AddComment from "./AddComment";
 import CommentPostHeader from "./CommentPostHeader";
 
-
 export default function PostItem({ post, showAllComments = false }) {
-  const { body, comments, image, user, createdAt, _id } = post;
   const [isLiked, setIsLiked] = useState(false);
   const [showComments, setShowComments] = useState(showAllComments);
+
+  // Safety check: if post is undefined or null, return early with error message
+  if (!post) {
+    return (
+      <Card className="p-6 text-center">
+        <p className="text-gray-500 dark:text-gray-400">
+          Post data is not available
+        </p>
+      </Card>
+    );
+  }
+
+  // Destructure with default values to prevent errors
+  const {
+    body = "",
+    comments = [],
+    image = null,
+    user = {},
+    createdAt = new Date().toISOString(),
+    _id = "",
+  } = post;
 
   return (
     <Motion.div
@@ -19,7 +38,6 @@ export default function PostItem({ post, showAllComments = false }) {
       transition={{ duration: 0.3 }}
       className="group"
     >
-        
       <Card
         className="overflow-hidden border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl 
         shadow-xl hover:shadow-2xl transition-all duration-500 
@@ -44,12 +62,12 @@ export default function PostItem({ post, showAllComments = false }) {
           >
             <img
               src={image}
-              alt={body}
+              alt={body || "Post image"}
               className="w-full max-h-150 object-cover transition-transform duration-700 
                 group-hover/image:scale-110"
             />
 
-            {/* Creative gradient overlay */}
+            {/* Creative linear overlay */}
             <div
               className="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-black/0 
               opacity-0 group-hover/image:opacity-100 transition-opacity duration-300"
@@ -87,6 +105,7 @@ export default function PostItem({ post, showAllComments = false }) {
                 {isLiked ? "Liked" : "Like"}
               </span>
             </Motion.button>
+
             {/* Comment Button */}
             <Link to={`/posts/${_id}`}>
               <Motion.button
@@ -138,42 +157,54 @@ export default function PostItem({ post, showAllComments = false }) {
             <div className="space-y-3">
               {showComments || showAllComments ? (
                 <>
-                  {comments.map((comment, index) => (
+                  {comments.map((comment, index) => {
+                    if (!comment) return null;
+
+                    return (
+                      <Motion.div
+                        key={comment?._id || `comment-${index}`}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <CommentPostHeader
+                          user={{
+                            ...(comment.commentCreator || {}),
+                            createdAt:
+                              comment?.createdAt || new Date().toISOString(),
+                            body: comment?.content || "",
+                          }}
+                          isComment={true}
+                          mediaId={comment?._id || ""}
+                          postId={_id}
+                        />
+                      </Motion.div>
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  {comments[comments.length - 1] && (
                     <Motion.div
-                      key={comment?._id}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
                     >
                       <CommentPostHeader
                         user={{
-                          ...comment.commentCreator,
-                          createdAt: comment?.createdAt,
-                          body: comment?.content,
+                          ...(comments[comments.length - 1].commentCreator ||
+                            {}),
+                          createdAt:
+                            comments[comments.length - 1].createdAt ||
+                            new Date().toISOString(),
+                          body: comments[comments.length - 1].content || "",
                         }}
-                        isComment={true}
-                        mediaId={comment?._id}
+                        mediaId={comments[comments.length - 1]._id || ""}
                         postId={_id}
+                        isComment={true}
                       />
                     </Motion.div>
-                  ))}
+                  )}
                 </>
-              ) : (
-                <Motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                >
-                  <CommentPostHeader
-                    user={{
-                      ...comments[comments.length - 1].commentCreator,
-                      createdAt: comments[comments.length - 1].createdAt,
-                      body: comments[comments.length - 1].content,
-                    }}
-                    mediaId={comments[comments.length - 1]._id}
-                    postId={_id}
-                    isComment={true}
-                  />
-                </Motion.div>
               )}
             </div>
           </div>
@@ -184,7 +215,7 @@ export default function PostItem({ post, showAllComments = false }) {
           <AddComment post={_id} />
         </div>
 
-        {/* Decorative bottom gradient */}
+        {/* Decorative bottom linear */}
         <div
           className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-purple-500 via-pink-500 to-purple-500 
           transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
