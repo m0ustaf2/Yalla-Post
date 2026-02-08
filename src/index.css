@@ -4,40 +4,32 @@
 
 @source "../node_modules/flowbite-react";
 
-
-/* @theme {
-  --color-*: initial;
-  --radius-*: initial;
-} */
-
-/* Dark mode configuration */
-/* @variant dark (&:where(.dark, .dark *)); */
-
-
-
-
-
-@font-face{
+@font-face {
   font-family: "Playwrite PL";
   src: url("./assets/fonts/PlaywritePL.ttf");
 }
-@font-face{
+@font-face {
   font-family: "Rubik";
   src: url("./assets/fonts/Rubik.ttf");
 }
 
-@theme{
-  --font-logo:"PlaywritePL",sans-serif;
-  --font-primary:"Rubik",sans-serif;
+@theme {
+  --font-logo: "PlaywritePL", sans-serif;
+  --font-primary: "Rubik", sans-serif;
 }
 
 @layer base {
-  body{
+  body {
     @apply font-primary;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold;
-  }   
+  }
   h1 {
     @apply text-3xl;
   }
@@ -59,7 +51,7 @@
 }
 
 @layer utilities {
-  .logo{
+  .logo {
     @apply font-logo;
   }
   .container {
@@ -80,14 +72,22 @@
 }
 
 @keyframes shake {
-  0%, 100% { 
-    transform: translateX(0); 
+  0%,
+  100% {
+    transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% { 
-    transform: translateX(-5px); 
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
   }
-  20%, 40%, 60%, 80% { 
-    transform: translateX(5px); 
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
   }
 }
 
@@ -115,9 +115,6 @@
   animation: tooltip 0.2s ease-out;
 }
 
-
-.avatar *{
+.avatar * {
   @apply size-full object-cover;
 }
-
-

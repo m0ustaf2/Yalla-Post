@@ -12,14 +12,14 @@ export const registerSchema = z
       .nonempty("email is required")
       .regex(
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-        "enter a valid email"
+        "enter a valid email",
       ),
     password: z
       .string()
       .nonempty("password is required")
       .regex(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "password must be minimum of 8 characters, with at least one uppercase letter, one lowercase letter, one number, and one special character"
+        "password must be minimum of 8 characters, with at least one uppercase letter, one lowercase letter, one number, and one special character",
       ),
     rePassword: z.string().nonempty("please confirm your password"),
     gender: z.enum(["male", "female"], { message: "gender is required" }),
@@ -37,9 +37,9 @@ export const registerSchema = z
           const selectedYear = date.getFullYear();
           const currentYear = new Date().getFullYear();
           const age = currentYear - selectedYear;
-          return age >= 15;
+          return age >= 8;
         },
-        { message: "age must be at least 15 years old" }
+        { message: "age must be at least 8 years old" },
       ),
   })
   .refine((data) => data.password === data.rePassword, {
